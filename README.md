@@ -16,6 +16,21 @@ pip install -r requirements.txt
 ## Examples
 Please see [threestudio-3dgs](https://github.com/DSaurus/threestudio-3dgs#load-from-ply) for more details.
 
+## Supported Modes
+
+The threestudio-lrm currently supports two modes:
+
+1. **Text-to-Image Mode (`text2image`):**
+   - Generates a single image from a text prompt using SDXL.
+   - Transforms the image into a triplanar representation, then to a mesh, and finally to a point cloud using LRM.
+   - This mode is designed for processing based on a single-view image generated from text.
+
+2. **Image-to-Image Mode (`image2image`):**
+   - Directly loads a single-view image.
+   - Generates a point cloud from this image to initiate the reconstruction process.
+   - Ideal for workflows that start with an existing single-view image.
+
+
 ## Citation
 If you use threestudio-lrm in your research, please cite the following paper:
 ```
