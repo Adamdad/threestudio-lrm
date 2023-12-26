@@ -1,5 +1,5 @@
 # threestudio-lrm
-The threestudio-lrm is an extension for threestudio, integrating the Large Reconstruction Model (LRM) for advanced 3D reconstruction tasks. This model is based on the framework detailed at [https://yiconghong.me/LRM/](https://yiconghong.me/LRM/). We have adapted the open-source implementation from [OpenLRMn](https://github.com/3DTopia/OpenLRM). Currently, it is only used for initialization of Gaussian Splatting.
+The threestudio-lrm is an extension for threestudio, integrating the Large Reconstruction Model (LRM) for advanced 3D reconstruction tasks. This model is based on the framework detailed at [https://yiconghong.me/LRM/](https://yiconghong.me/LRM/). We have adapted the open-source implementation from [OpenLRM](https://github.com/3DTopia/OpenLRM). Currently, it is only used for initialization of Gaussian Splatting.
 
 ## Installation
 ```
