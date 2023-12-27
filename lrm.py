@@ -55,7 +55,7 @@ class lrm_Guidance(BaseObject):
             model (str): The model used for background removal.
 
         Returns:
-            None: The function saves the processed image to the same directory as the input image.
+            str: The path to the processed image.
         """
         threestudio.info(f"Removing Background ...")
         
@@ -98,7 +98,15 @@ class lrm_Guidance(BaseObject):
         prompt,
         **kwargs,
     ):
-        
+        """
+        Executes the lrm_Guidance object.
+
+        Args:
+            prompt: The input prompt.
+
+        Returns:
+            tuple: A tuple containing the coordinates and RGB values.
+        """
         threestudio.info(f"Loading lrm guidance ...")
 
         if self.cfg.mode == "text2image":
@@ -109,7 +117,7 @@ class lrm_Guidance(BaseObject):
 
             image = pipe(prompt).images[0]
             image = image.save(self.cfg.source_image)
-            self.cfg.source_image = self.remove_background(self.cfg.source_image)
+        self.cfg.source_image = self.remove_background(self.cfg.source_image)
             
         with LRMInferrer(model_name=self.cfg.model_name) as inferrer:
             source_image_size = self.cfg.source_size if self.cfg.source_size > 0 else inferrer.infer_kwargs['source_size']
@@ -130,12 +138,10 @@ class lrm_Guidance(BaseObject):
 
         # Extract mesh and convert to point cloud
         mesh = results['mesh']
-        mesh.export(os.path.join(self.cfg.dump_path, f'tmp.ply'), 'ply')
+        # mesh.export(os.path.join(self.cfg.dump_path, f'tmp.ply'), 'ply')
         
         
         coords, face_index, colors = sample_surface(mesh, 10000, sample_color=True)
-        
-        coords = coords[:,[1,2,0]]
         
         rgb = colors[:,:3]
         rgb = rgb.astype(np.float32) / 255.0
